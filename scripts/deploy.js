@@ -1,5 +1,11 @@
 const { ethers } = require("hardhat");
 
+async function deploy(contractName, signer, ...args) {
+    const Factory = await ethers.getContractFactory(contractName, signer)
+    const instance = await Factory.deploy(...args)
+    return instance.deployed()
+}
+
 async function main() {
     let admin;
 
